@@ -330,10 +330,10 @@ namespace GlobalProgect_1
                     {
                         max = j;
                     }
+                }
                     temp = array[i];
                     array[i] = array[max];
                     array[max] = temp;
-                }
             }
         }
 

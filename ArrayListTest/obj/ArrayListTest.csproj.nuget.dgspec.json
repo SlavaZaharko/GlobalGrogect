@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\ArrayListTest\\ArrayListTest.csproj": {}
+    "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\ArrayListTest\\ArrayListTest.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\ArrayListTest\\ArrayListTest.csproj": {
+    "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\ArrayListTest\\ArrayListTest.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\ArrayListTest\\ArrayListTest.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\ArrayListTest\\ArrayListTest.csproj",
         "projectName": "ArrayListTest",
-        "projectPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\ArrayListTest\\ArrayListTest.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\ArrayListTest\\ArrayListTest.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\ArrayListTest\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\ArrayListTest\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\GlobalProgect_1\\GlobalProgect_1.csproj": {
-                "projectPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\GlobalProgect_1\\GlobalProgect_1.csproj"
+              "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\GlobalProgect_1\\GlobalProgect_1.csproj": {
+                "projectPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\GlobalProgect_1\\GlobalProgect_1.csproj"
               }
             }
           }
@@ -74,14 +74,14 @@
         }
       }
     },
-    "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\GlobalProgect_1\\GlobalProgect_1.csproj": {
+    "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\GlobalProgect_1\\GlobalProgect_1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\GlobalProgect_1\\GlobalProgect_1.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\GlobalProgect_1\\GlobalProgect_1.csproj",
         "projectName": "GlobalProgect_1",
-        "projectPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\GlobalProgect_1\\GlobalProgect_1.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\GlobalProgect_1\\GlobalProgect_1.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect_1\\GlobalProgect_1\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\GitKraken\\GlobalProgect\\GlobalProgect_1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
