@@ -65,14 +65,6 @@ namespace GlobalProgect_1
             length++;
         }
 
-        //public void AddMass(int[] a)
-        //{
-        //    for (int i = 0; i < a.Length; i++)
-        //    {
-        //        list.Add(array[i]);
-        //    }
-        //}
-
         public void Add(int[] a) // добавление массива в конец массива 
         {
             while (length + a.Length > array.Length)
@@ -108,7 +100,7 @@ namespace GlobalProgect_1
             {
                 UpArraySiza();
             }
-            for (int i = length + a.Length - 2; i >= 0; i--)
+            for (int i = 0; i<length; i++)
             {
                 array[i + a.Length] = array[i];
             }
@@ -126,7 +118,7 @@ namespace GlobalProgect_1
                 UpArraySiza();
             }
             length++;
-            for (int i = length - 1; i >= a; i--)
+            for (int i = length-1; i >= a; i--)
             {
                 array[i + 1] = array[i];
             }
@@ -212,10 +204,15 @@ namespace GlobalProgect_1
             {
                 if (array[i] == a)
                 {
-                    i_index = i;
+                    return i_index;
+                }
+                else
+                {
+                    i_index++;
                 }
             }
-            return i_index;
+            return -1;
+
         }
 
         public void ChangesByIndex(int a, int b) // изменения по индексу
