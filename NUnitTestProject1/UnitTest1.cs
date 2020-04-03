@@ -144,5 +144,22 @@ namespace ListTest
             list.Add(array);
             return list.SearchIndexMinElem();
         }
+
+        [TestCase(new int[] { 1, 2, 3, 4, 5 }, ExpectedResult = new int[] { 5, 4, 3, 2, 1 })]
+        [TestCase(new int[] { 1, 2, 3, 4 }, ExpectedResult = new int[] { 4, 3, 2, 1 })]
+        public int[] RevMassiveTest(int[] array) 
+        {
+            list.Add(array);
+            list.RevMassive();
+            return list.ReturnArray();
+        }
+
+        [TestCase(new int[] { 12, 9, -3, 14, -15 }, ExpectedResult = new int[] { -15,  -3, 9, 12, 14 })]
+        public int[] SortAscendElemTest(int[] array) 
+        {
+            list.Add(array);
+            list.SortAscendElem();
+            return list.ReturnArray();
+        }
     }
 }

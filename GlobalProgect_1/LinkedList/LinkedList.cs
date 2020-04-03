@@ -277,5 +277,37 @@ namespace GlobalProgect_1.LinkedLists
             }
             return i_min;
         }
+
+        public void RevMassive()// ревес массива
+        {
+            Node tmpRoot = root;   
+            while (tmpRoot.Next != null) 
+            {
+                Node tmp = tmpRoot.Next;
+                tmpRoot.Next = tmpRoot.Next.Next;
+                tmp.Next = root;
+                root = tmp;
+            }
+        }
+
+        public void SortAscendElem()//сортировка по возрастанию 
+        {
+            Node tmp = root;
+            Node max = root;
+            for (int i = 0; i < Length; i++)
+            {
+                Node _tmp = tmp;
+                for (int j = 0; j < Length; j++)
+                {
+                    if (max.Value < tmp.Value)
+                    {
+                        max = tmp;
+                    }
+                    tmp = tmp.Next;
+                }
+                _tmp = tmp.Next;
+            }
+            tmp = tmp.Next;
+        }
     }
 }
