@@ -4,7 +4,7 @@ using System.Text;
 
 namespace GlobalProgect_1
 {
-    public class ArrayList : IArrayList
+    public class ArrayList : IList
     {
         private int[] array;
         private int length;
@@ -41,7 +41,7 @@ namespace GlobalProgect_1
         {
             array = a;
             length = a.Length;
-        }
+        } 
 
 
         private void UpArraySiza() //расширение массива  
@@ -65,6 +65,14 @@ namespace GlobalProgect_1
             length++;
         }
 
+        //public void AddMass(int[] a)
+        //{
+        //    for (int i = 0; i < a.Length; i++)
+        //    {
+        //        list.Add(array[i]);
+        //    }
+        //}
+
         public void Add(int[] a) // добавление массива в конец массива 
         {
             while (length + a.Length > array.Length)
@@ -77,6 +85,8 @@ namespace GlobalProgect_1
             }
             length += a.Length;
         }
+
+
 
         public void AddFirst(int a) //добавление в начало массива 
         {
