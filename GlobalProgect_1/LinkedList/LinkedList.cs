@@ -20,6 +20,18 @@ namespace GlobalProgect_1.LinkedLists
             Length = 1;
         }
 
+        public LinkedList(int[] a)
+        {
+            root = new Node(a[0]);
+            Node tmp = root;
+            for (int i = 1; i < a.Length; i++)
+            {
+                tmp.Next = new Node(a[i]);
+                tmp = tmp.Next;
+            }
+            Length = a.Length;
+        }
+
         public int[] ReturnArray()//возврат массива
         {
             int[] array = new int[Length];
@@ -30,7 +42,7 @@ namespace GlobalProgect_1.LinkedLists
                 do
                 {
                     array[i] = tmp.Value;
-                    i++;
+                    i++;    
                     tmp = tmp.Next;
                 } while (tmp != null);
             }
@@ -61,43 +73,49 @@ namespace GlobalProgect_1.LinkedLists
             }
         }
 
+
+
         public void Add(int[] a)//добавление массива в конец
         {
-            if (root == null)
+            if (a.Length != 0)
             {
-                root = new Node(a[0]);
-                Node tmp = root;
-                for (int i = 1; i < a.Length; i++)
+                if (root == null)
                 {
-                    tmp.Next = new Node(a[i]);
-                    tmp = tmp.Next;
+                    root = new Node(a[0]);
+                    Node tmp = root;
+                    for (int i = 1; i < a.Length; i++)
+                    {
+                        tmp.Next = new Node(a[i]);
+                        tmp = tmp.Next;
+                    }
+                    Length = a.Length;
                 }
-                Length = a.Length;
-            }
-            else if (root != null && root.Next == null)
-            {
-                Node tmp = root.Next;
-                for (int i = 0; i < a.Length; i++)
+                else if (root != null && root.Next == null)
                 {
-                    tmp.Next = new Node(a[i]);
-                    tmp = tmp.Next;
+                    Node tmp = root.Next;
+                    for (int i = 0; i < a.Length; i++)
+                    {
+                        tmp.Next = new Node(a[i]);
+                        tmp = tmp.Next;
+                    }
+                    Length += a.Length;
                 }
-                Length += a.Length;
-            }
-            else
-            {
-                Node tmp = root;
-                while (tmp.Next != null)
+                else
                 {
-                    tmp = tmp.Next;
+                    Node tmp = root;
+                    while (tmp.Next != null)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    tmp.Next = new Node(a[0]);
+                    Node q = tmp.Next;
+                    for (int i = 1; i < a.Length; i++)
+                    {
+                        q.Next = new Node(a[i]);
+                        q = q.Next;
+                    }
+                    Length += a.Length;
                 }
-                Node q = tmp.Next;
-                for (int i = 0; i < a.Length; i++)
-                {
-                    q.Next = new Node(a[i]);
-                    q = q.Next;
-                }
-                Length += a.Length;
             }
         }
 
@@ -138,15 +156,60 @@ namespace GlobalProgect_1.LinkedLists
             }
         }
 
+        public void AddIndex(int a, int[] b) // добавление массива по индексу
+        {
+            if (root != null && root.Next != null) 
+            {
+                Node tmp = root;
+                for (int i = 1; i < a; i++)
+                {
+                    tmp = tmp.Next;  
+                }
+                for (int j = 0; j < b.Length ; j++)
+                {
+                    Node q = tmp.Next;
+                    tmp.Next = new Node(b[j]);
+                    tmp.Next.Next = q;
+                    tmp = tmp.Next;
+                }
+                Length += b.Length;
+            }
+        }
+
+
+
         public void DelFromEnd() // удаление из конца одного элемента 
         {
-            Node tmp = root;
-            while (tmp.Next.Next != null)
+            if (root != null && root.Next != null)
             {
-                tmp = tmp.Next.Next;
+                Node tmp = root;
+                while (tmp.Next.Next != null)
+                {
+                    tmp = tmp.Next;
+                }
+                tmp.Next=null;
+                Length--;
             }
-            tmp.Next = tmp.Next.Next;
-            Length--;
+        }
+
+        public void DelFromEndNElem(int n) // удаление из конца n-элементов 
+        {
+
+            if (Length != n)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    Node tmp = root;
+                    while (tmp.Next.Next != null)
+                    {
+                        tmp = tmp.Next;
+
+                    }
+                    tmp.Next = null;
+                    Length--;
+                }
+            }
+
         }
 
         public void DelFromBegin() //удаление из начала одного элемента
@@ -155,6 +218,17 @@ namespace GlobalProgect_1.LinkedLists
             root = tmp;
             Length--;
         }
+
+        //public void DelFromBeginNElem(int n) // удаление из начала n-элементов
+        //{
+        //    while (Length > Length - n)
+        //    {
+        //        Node tmp = root.Next;
+        //        root = tmp;
+        //        Length--;
+        //    }
+        //}
+
 
         public void DelByIndex(int a) //удаление элемента по индексу 
         {
@@ -181,7 +255,7 @@ namespace GlobalProgect_1.LinkedLists
             return tmp.Value;
         }
 
-        public int AccessByValue(int a)// вывод элемента по индексу 
+        public int AccessByValue(int a)// вывод индекса по значению 
         {
             int index = 0;
             Node tmp = root;
@@ -309,5 +383,55 @@ namespace GlobalProgect_1.LinkedLists
             }
             tmp = tmp.Next;
         }
+
+        public int ReturnLengthMassiva()//возврат длины массива
+        {
+            Node tmp = root;
+            int ilength = 1;
+            if (tmp == null)
+            {
+                ilength = 0;
+            }
+            else if (tmp != null && tmp.Next == null) 
+            {
+                ilength = 1;
+            }
+            else if (tmp != null && tmp.Next != null)
+            {
+                while (tmp.Next != null) 
+                {
+                    tmp = tmp.Next;
+                    ilength++;
+                }
+            }
+            return ilength;
+        }
+
+        public void DeleteByValue(int a)// удаление по значению
+        {
+            Node tmp = root;
+            if (tmp.Value == a)
+            {
+                AddFirst(a);
+            }
+            else  
+            {
+                while (tmp.Next != null) 
+                {
+                    if (tmp.Next.Value == a)
+                    {
+                        tmp.Next = tmp.Next.Next;
+                        Length--;
+                    }
+                    else 
+                    {
+                        tmp = tmp.Next;
+                    }
+                }
+            }
+            
+
+        }
+
     }
 }

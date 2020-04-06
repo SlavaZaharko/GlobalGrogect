@@ -1,5 +1,6 @@
 ﻿using System;
 using GlobalProgect_1.LinkedLists;
+using GlobalProgect_1.DoubleLinkedLists;
 
 namespace GlobalProgect_1
 {
@@ -13,15 +14,15 @@ namespace GlobalProgect_1
             //ArrayList b = new ArrayList(new int[] { 2, 4, 12, 9, -1, 0 });
             //b.AscendingDescending();
 
-            LinkedList L = new LinkedList();
-            L.Add(1);
+            DoubleLinkedList L = new DoubleLinkedList();
+            L.Add(new int[] {1, 2, 3,4 });
             qqq(L.ReturnArray());
-            L.Add(2);
-            qqq(L.ReturnArray());
-            L.Add(3);
-            qqq(L.ReturnArray());
-            //L.AddToStart(0);
-            qqq(L.ReturnArray());
+
+           
+
+
+
+
 
         }
 
