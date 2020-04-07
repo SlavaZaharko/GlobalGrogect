@@ -219,15 +219,18 @@ namespace GlobalProgect_1.LinkedLists
             Length--;
         }
 
-        //public void DelFromBeginNElem(int n) // удаление из начала n-элементов
-        //{
-        //    while (Length > Length - n)
-        //    {
-        //        Node tmp = root.Next;
-        //        root = tmp;
-        //        Length--;
-        //    }
-        //}
+        public void DelFromBeginNElem(int n) // удаление из начала n-элементов
+        {
+            if (root!=null) 
+            {
+                for(int i=0; i<n; i++)
+                {
+                    Node tmp = root.Next;
+                    root = tmp;
+                    Length--;
+                }
+            }
+        }
 
 
         public void DelByIndex(int a) //удаление элемента по индексу 
@@ -366,24 +369,51 @@ namespace GlobalProgect_1.LinkedLists
 
         public void SortAscendElem()//сортировка по возрастанию 
         {
-            Node tmp = root;
-            Node max = root;
-            for (int i = 0; i < Length; i++)
             {
-                Node _tmp = tmp;
-                for (int j = 0; j < Length; j++)
+                Node prev = null;
+                Node minPrev = null;
+                Node min = root;
+                Node tmp = root;
+                while (tmp != null)
                 {
-                    if (max.Value < tmp.Value)
+                    if (min.Value > tmp.Value)
                     {
-                        max = tmp;
+                        min = tmp;
+                        minPrev = prev;
                     }
+                    prev = tmp;
                     tmp = tmp.Next;
                 }
-                _tmp = tmp.Next;
+                if (minPrev != null)
+                {
+                    minPrev.Next = minPrev.Next.Next;
+                    min.Next = root;
+                    root = min;
+                }
+                Node plese = root;
+                for (int i = 1; i < Length; i++)
+                {
+                    prev = plese;
+                    minPrev = plese;
+                    min = plese.Next;
+                    tmp = plese.Next;
+                    while (tmp != null)
+                    {
+                        if (min.Value > tmp.Value)
+                        {
+                            min = tmp;
+                            minPrev = prev;
+                        }
+                        prev = tmp;
+                        tmp = tmp.Next;
+                    }
+                    minPrev.Next = minPrev.Next.Next;
+                    min.Next = plese.Next;
+                    plese.Next = min;
+                    plese = plese.Next;
+                }
             }
-            tmp = tmp.Next;
         }
-
         public int ReturnLengthMassiva()//возврат длины массива
         {
             Node tmp = root;
@@ -431,6 +461,51 @@ namespace GlobalProgect_1.LinkedLists
             }
             
 
+        }
+
+        public void DelByIndexNElem(int a, int n) //удаление по индексу n-элементов
+        {
+            if (root != null && root.Next != null)
+            {
+                Node tmp = root;
+                for (int i = 1; i < a; i++)
+                {
+                    tmp = tmp.Next;
+                }
+                for (int j = 0; j < n; j++)
+                {
+                    tmp.Next = tmp.Next.Next;
+                    Length--;
+                }
+            }
+        }
+
+
+        public void AscendingDescending()
+        {
+            if (root != null && root.Next != null) 
+            {
+                Node tmpRoot = root;
+                while (tmpRoot.Next != null) 
+                {
+                    Node tmp = tmpRoot;
+                    while (tmp.Next != null)
+                    {
+                        if (tmp.Value > tmp.Next.Value)
+                        {
+                            tmp = tmp.Next.Next;
+                            tmp.Next = tmp;
+                        }
+                        else
+                        {
+                            tmp = tmp.Next;
+                        }
+                    }
+                    tmpRoot = tmp;
+
+                    tmpRoot = tmpRoot.Next;
+                } 
+            }
         }
 
     }

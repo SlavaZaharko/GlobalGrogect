@@ -74,31 +74,34 @@ namespace GlobalProgect_1.DoubleLinkedLists
         }
         public void Add(int[] a) // добавление массива в конец списка
         {
-            if (root == null)
+            if (root != null)
             {
-                root = new DoubleNode(a[0]);
-                DoubleNode tmp = root;
-                for (int i = 1; i < a.Length; i++)
+                if (root == null)
                 {
-                    tmp.Next = new DoubleNode(a[i]);
-                    tmp.Next.Previous = tmp;
-                    tmp = tmp.Next;
+                    root = new DoubleNode(a[0]);
+                    DoubleNode tmp = root;
+                    for (int i = 1; i < a.Length; i++)
+                    {
+                        tmp.Next = new DoubleNode(a[i]);
+                        tmp.Next.Previous = tmp;
+                        tmp = tmp.Next;
+                    }
+                    end = tmp;
+                    Length = a.Length;
                 }
-                end = tmp;
-                Length = a.Length;
-            }
 
-            else
-            {
-                DoubleNode tmp = end;
-                for (int i = 0; i < a.Length; i++)
+                else
                 {
-                    tmp.Next = new DoubleNode(a[i]);
-                    tmp.Next.Previous = tmp;
-                    tmp = tmp.Next;
+                    DoubleNode tmp = end;
+                    for (int i = 0; i < a.Length; i++)
+                    {
+                        tmp.Next = new DoubleNode(a[i]);
+                        tmp.Next.Previous = tmp;
+                        tmp = tmp.Next;
+                    }
+                    end = tmp;
+                    Length += a.Length;
                 }
-                end = tmp;
-                Length += a.Length;
             }
         }
 
@@ -180,6 +183,50 @@ namespace GlobalProgect_1.DoubleLinkedLists
             }
         }
 
+        public void AddIndex(int a, int[] b)//добавление по индексу
+        {
+            if (root != null && end != null)
+            {
+                if (a < Length / 2)
+                {
+                    DoubleNode tmp = root;
+                    for (int i = 0; i < a - 1; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    for (int j = 0; j < b.Length; j++)
+                    {
+                    DoubleNode q = tmp.Next;
+                    q.Previous = tmp;
+                    tmp.Next = new DoubleNode(b[j]);
+                    tmp.Next.Previous = tmp;
+                    tmp = tmp.Next;
+                    tmp.Next = q;
+                    q.Previous = tmp;
+                    }
+                    Length +=b.Length;
+                }
+                else
+                {
+                    DoubleNode tmp = end;
+                    for (int i = Length; i > a+1 ; i--)
+                    {
+                        tmp = tmp.Previous;
+                    }
+                    for (int j = 0; j < b.Length; j++)
+                    {
+                        DoubleNode q = tmp.Previous;
+                        q.Next = tmp;
+                        tmp.Previous = new DoubleNode(b[j]);
+                        tmp.Previous.Next = tmp;
+                        tmp.Previous.Previous = q;
+                        q.Next = tmp.Previous;
+                    }
+                    Length += b.Length;
+                }
+            }
+        }
+
         public void DelFromBegin() //удаление из начала одного элемента
         {
             if (root != null && root.Next == null)
@@ -213,14 +260,271 @@ namespace GlobalProgect_1.DoubleLinkedLists
                 Length--;
             }
         }
-        public void DelFromEndNElem(int n)
-        {
 
+        public void DelByIndex(int a) //удаление элемента по индексу
+        {
+            if (root != null && end != null) { 
+                if (a < Length / 2)
+                {
+                    DoubleNode tmp = root;
+                    for (int i = 1; i < a; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    DoubleNode q = tmp.Next.Next;
+                    q.Previous.Previous = tmp;
+                    q.Previous = null;
+                    tmp.Next = null;
+                    tmp.Next = q;
+                    Length--;
+                }
+                else 
+                {
+                    DoubleNode tmp = end;
+                    for (int i = Length-1; i > a+1; i--)
+                    {
+                        tmp = tmp.Previous;
+                    }
+                    DoubleNode q = tmp.Previous.Previous;
+                    q.Next.Next = tmp;
+                    q.Next = null;
+                    tmp.Previous = null;
+                    q.Next = tmp;
+                    Length--;
+                }
+            }
         }
 
-        public void DelFromBeginNElem(int n) // удаление из начала n-элементов
-        { 
+        public int AccessIndex(int a)// вывод элемента по индексу 
+        {
+            int n = root.Value;
+            if (root != null && end != null)
+            {
+                if (a < Length / 2)
+                {
+                    DoubleNode tmp = root;
+                    for (int i = 0; i < a; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    n = tmp.Value;
+                }
+                else
+                {
+                    DoubleNode tmp = end;
+                    for (int i = Length-1; i > a; i--)
+                    {
+                        tmp = tmp.Previous;
+                    }
+                    n = tmp.Value;
+                }
+            }
+            return n;
+        }
+
+        public int AccessByValue(int a)// вывод индекса по значению
+        {
+            int index = 0;
+            DoubleNode tmp = root;
+            while (tmp != null)
+            {
+                if (tmp.Value == a)
+                {
+                    return index;
+                }
+                else
+                {
+                    tmp = tmp.Next;
+                    index++;
+                }
+            }
+            return -1;
+        }
+
+        public void ChangesByIndex(int a, int b) // изменения по индексу
+        {
+            if (root != null && end != null)
+            {
+                if (a < Length / 2)
+                {
+                    DoubleNode tmp = root;
+                    for (int i = 0; i < a; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    tmp.Value=b;
+                }
+                else
+                {
+                    DoubleNode tmp = end;
+                    for (int i = Length - 1; i > a; i--)
+                    {
+                        tmp = tmp.Previous;
+                    }
+                    tmp.Value = b;
+                }
+            }
+        }
+
+        public int SearchMaxElem()// поиск максималного значения
+        {
+            DoubleNode tmp = root;
+            int max = root.Value;
+            for (int i = 0; i < Length; i++)
+            {
+                if (max < tmp.Value)
+                {
+                    max = tmp.Value;
+                }
+                tmp = tmp.Next;
+            }
+            return max;
+        } 
         
+        public int SearchMinElem() // поиск минимального значения 
+        {
+            DoubleNode tmp = root;
+            int min = root.Value;
+            for (int i = 0; i < Length; i++)
+            {
+                if (min > tmp.Value)
+                {
+                    min = tmp.Value;
+                }
+                tmp = tmp.Next;
+            }
+            return min;
+        }
+        
+        public int SearchIndexMaxElem()//поиск индекса мах значения
+        {
+            int i_max = 0;
+            DoubleNode tmp = root;
+            int max = root.Value;
+            for (int i = 0; i < Length; i++)
+            {
+                if (max < tmp.Value)
+                {
+                    max = tmp.Value;
+                    i_max++;
+                }
+                tmp = tmp.Next;
+            }
+            return i_max;
+        } 
+        
+        public int SearchIndexMinElem()//поиск индекса минимального значения
+        {
+            int i_min = 0;
+            DoubleNode tmp = root;
+            int min = root.Value;
+            for (int i = 0; i < Length; i++)
+            {
+                if (min > tmp.Value)
+                {
+                    min = tmp.Value;
+                    i_min++;
+                }
+                tmp = tmp.Next;
+            }
+            return i_min;
+        }
+
+        public void DeleteByValue(int a)// удаление по значению
+        {
+            DoubleNode tmp = root;
+            if (tmp.Value == a)
+            {
+                AddFirst(a);
+            }
+            else
+            {
+                while (tmp.Next != null)
+                {
+                    if (tmp.Next.Value == a)
+                    {
+                        DoubleNode q = tmp.Next.Next;
+                        q.Previous.Previous = tmp;
+                        q.Previous = null;
+                        tmp.Next = null;
+                        tmp.Next = q;
+                        Length--;
+                    }
+                    else
+                    {
+                        tmp = tmp.Next;
+                    }
+                }
+            }
+        }
+
+        public int ReturnLengthMassiva()//возврат длины массива
+        {
+            DoubleNode tmp = root;
+            int ilength = 1;
+            if (tmp == null)
+            {
+                ilength = 0;
+            }
+            else if (tmp != null && tmp.Next == null)
+            {
+                ilength = 1;
+            }
+            else if (tmp != null && tmp.Next != null)
+            {
+                while (tmp.Next != null)
+                {
+                    tmp = tmp.Next;
+                    ilength++;
+                }
+            }
+            return ilength;
+        }
+
+        public void RevMassive()// ревес массива
+        {
+            if (root != null && end != null) 
+            {
+            
+            }
+        
+        }
+
+
+
+        public void DelFromEndNElem(int n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DelFromBeginNElem(int n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DelByIndexNElem(int a, int n)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RevMassive()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SortAscendElem()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ReturnMassive()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AscendingDescending()
+        {
+            throw new NotImplementedException();
         }
     }
 }
