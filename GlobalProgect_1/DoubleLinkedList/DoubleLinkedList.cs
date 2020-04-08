@@ -74,7 +74,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
         }
         public void Add(int[] a) // добавление массива в конец списка
         {
-            if (root != null)
+            if (a.Length != 0)
             {
                 if (root == null)
                 {
@@ -183,7 +183,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
             }
         }
 
-        public void AddIndex(int a, int[] b)//добавление по индексу
+        public void AddIndex(int a, int[] b)//добавление массива по индексу
         {
             if (root != null && end != null)
             {
@@ -483,48 +483,95 @@ namespace GlobalProgect_1.DoubleLinkedLists
 
         public void RevMassive()// ревес массива
         {
-            if (root != null && end != null) 
+            DoubleNode tmpRoot = root;
+            DoubleNode tmpEnd = end;
+            while (tmpRoot != tmpEnd) 
             {
-            
+                tmpRoot = tmpEnd;
+                tmpEnd = tmpRoot;
+
+
             }
-        
         }
 
 
-
-        public void DelFromEndNElem(int n)
+        public void DelFromEndNElem(int n) // удаление из конца n-элементов 
         {
-            throw new NotImplementedException();
+            if (Length > n)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    end = end.Previous;
+                    end.Next = null;
+                    Length--;
+                }
+            }
         }
 
-        public void DelFromBeginNElem(int n)
+        public void DelFromBeginNElem(int n) // удаление из начала n-элементов
         {
-            throw new NotImplementedException();
+            if (Length > n) 
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    DoubleNode tmp = root.Next;
+                    tmp.Previous = null;
+                    root = tmp;
+                    root.Previous = null;
+                    Length--;
+                }
+            }
         }
 
         public void DelByIndexNElem(int a, int n)
         {
-            throw new NotImplementedException();
-        }
-
-        public void RevMassive()
-        {
-            throw new NotImplementedException();
+            if (root != null && end != null)
+            {
+                if (a < Length / 2)
+                {
+                    DoubleNode tmp = root;
+                    for (int i = 1; i < a; i++)
+                    {
+                        tmp = tmp.Next;
+                    }
+                    for (int j = 0; j < n; j++)
+                    {
+                        DoubleNode q = tmp.Next.Next;
+                        q.Previous.Previous = tmp;
+                        q.Previous = null;
+                        tmp.Next = null;
+                        tmp.Next = q;
+                        Length--;
+                    }
+                }
+                else
+                {
+                    DoubleNode tmp = end;
+                    for (int i = Length - 1; i > a + 1; i--)
+                    {
+                        tmp = tmp.Previous;
+                    }
+                    for (int j = 0; j < n; j++)
+                    {
+                        DoubleNode q = tmp.Previous.Previous;
+                        q.Next.Next = tmp;
+                        q.Next = null;
+                        tmp.Previous = null;
+                        q.Next = tmp;
+                        Length--;
+                    }
+                }
+            }
         }
 
         public void SortAscendElem()
         {
-            throw new NotImplementedException();
-        }
-
-        public void ReturnMassive()
-        {
-            throw new NotImplementedException();
+            
         }
 
         public void AscendingDescending()
         {
-            throw new NotImplementedException();
+          
         }
     }
 }

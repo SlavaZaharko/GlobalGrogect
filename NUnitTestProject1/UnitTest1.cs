@@ -220,17 +220,17 @@ namespace ListTest
         [TestCase(new int[] { 2, 4, 8, 5, -1, 0 }, 3, 1, ExpectedResult = new int[] { 2, 4, 8, -1, 0 })]
         public int[] DelByIndexNElemTest(int[] array, int a, int n)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.DelByIndexNElem(a, n);
-            return actual.ReturnArray();
+            list.Add(array);
+            list.DelByIndexNElem(a, n);
+            return list.ReturnArray();
         }
 
         [TestCase(new int[] { 2, 4, 12, 9, -1, 0 }, ExpectedResult = new int[] { 12, 9, 4, 2, 0, -1 })]
         public int[] AscendingDescendingTest(int[] array)
         {
-            ArrayList actual = new ArrayList(array);
-            actual.AscendingDescending();
-            return actual.ReturnArray();
+            list.Add(array);
+            list.AscendingDescending();
+            return list.ReturnArray();
         }
     }
 }
