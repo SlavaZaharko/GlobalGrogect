@@ -42,7 +42,7 @@ namespace GlobalProgect_1.LinkedLists
                 do
                 {
                     array[i] = tmp.Value;
-                    i++;    
+                    i++;
                     tmp = tmp.Next;
                 } while (tmp != null);
             }
@@ -158,14 +158,14 @@ namespace GlobalProgect_1.LinkedLists
 
         public void AddIndex(int a, int[] b) // добавление массива по индексу
         {
-            if (root != null && root.Next != null) 
+            if (root != null && root.Next != null)
             {
                 Node tmp = root;
                 for (int i = 1; i < a; i++)
                 {
-                    tmp = tmp.Next;  
+                    tmp = tmp.Next;
                 }
-                for (int j = 0; j < b.Length ; j++)
+                for (int j = 0; j < b.Length; j++)
                 {
                     Node q = tmp.Next;
                     tmp.Next = new Node(b[j]);
@@ -187,7 +187,7 @@ namespace GlobalProgect_1.LinkedLists
                 {
                     tmp = tmp.Next;
                 }
-                tmp.Next=null;
+                tmp.Next = null;
                 Length--;
             }
         }
@@ -221,9 +221,9 @@ namespace GlobalProgect_1.LinkedLists
 
         public void DelFromBeginNElem(int n) // удаление из начала n-элементов
         {
-            if (root!=null) 
+            if (root != null)
             {
-                for(int i=0; i<n; i++)
+                for (int i = 0; i < n; i++)
                 {
                     Node tmp = root.Next;
                     root = tmp;
@@ -357,8 +357,8 @@ namespace GlobalProgect_1.LinkedLists
 
         public void RevMassive()// ревес массива
         {
-            Node tmpRoot = root;   
-            while (tmpRoot.Next != null) 
+            Node tmpRoot = root;
+            while (tmpRoot.Next != null)
             {
                 Node tmp = tmpRoot.Next;
                 tmpRoot.Next = tmpRoot.Next.Next;
@@ -422,13 +422,13 @@ namespace GlobalProgect_1.LinkedLists
             {
                 ilength = 0;
             }
-            else if (tmp != null && tmp.Next == null) 
+            else if (tmp != null && tmp.Next == null)
             {
                 ilength = 1;
             }
             else if (tmp != null && tmp.Next != null)
             {
-                while (tmp.Next != null) 
+                while (tmp.Next != null)
                 {
                     tmp = tmp.Next;
                     ilength++;
@@ -444,22 +444,22 @@ namespace GlobalProgect_1.LinkedLists
             {
                 AddFirst(a);
             }
-            else  
+            else
             {
-                while (tmp.Next != null) 
+                while (tmp.Next != null)
                 {
                     if (tmp.Next.Value == a)
                     {
                         tmp.Next = tmp.Next.Next;
                         Length--;
                     }
-                    else 
+                    else
                     {
                         tmp = tmp.Next;
                     }
                 }
             }
-            
+
 
         }
 
@@ -481,32 +481,79 @@ namespace GlobalProgect_1.LinkedLists
         }
 
 
+        //public void AscendingDescending()
+        //{
+        //    if (root != null && root.Next != null) 
+        //    {
+
+        //        for (int i = 0; i<Length-1; i++)
+        //        {
+        //            Node tmpRoot = root;
+        //            Node tmp = tmpRoot.Next;
+        //            if (tmpRoot.Value < tmpRoot.Next.Value)
+        //            {
+        //                tmpRoot.Next = tmpRoot.Next.Next;
+        //                tmp.Next = root;
+        //                root = tmp;
+        //            }
+        //            while (tmp.Next.Next != null)
+        //            {
+        //                Node prev = tmpRoot;
+        //                Node q = tmp.Next;
+        //                if (tmp.Value < tmp.Next.Value)
+        //                {
+        //                    tmp.Next = tmp.Next.Next;
+        //                    q.Next = tmp;
+        //                    prev.Next = q;
+        //                    tmp = tmp.Next;
+        //                }
+        //                else
+        //                {
+        //                    tmp = tmp.Next;
+        //                }
+        //            }
+        //        } 
+        //    }
+        //}
+
         public void AscendingDescending()
         {
-            if (root != null && root.Next != null) 
+
+            if (root != null && root.Next != null)
             {
-                Node tmpRoot = root;
-                while (tmpRoot.Next != null) 
+                for (int i=Length-1; i>0 ; i--)
                 {
-                    Node tmp = tmpRoot;
-                    while (tmp.Next != null)
+                    Node previos = root;
+                    Node tmp = root.Next;
+                    if (previos.Value < tmp.Value)
                     {
-                        if (tmp.Value > tmp.Next.Value)
+                        Node q = tmp;
+                        previos.Next = tmp.Next;
+                        q.Next = previos;
+                        root = tmp;
+                    }
+                    else
+                    {
+                        while (tmp.Next != null)
                         {
-                            tmp = tmp.Next.Next;
-                            tmp.Next = tmp;
-                        }
-                        else
-                        {
-                            tmp = tmp.Next;
+
+                            if (tmp.Value < tmp.Next.Value)
+                            {
+                                Node q = tmp.Next;
+                                tmp.Next = tmp.Next.Next;
+                                previos.Next = q;
+                                q.Next = tmp;
+                                previos = previos.Next;
+                            }
+                            else
+                            {
+                                tmp = tmp.Next;
+                                previos = previos.Next;
+                            }
                         }
                     }
-                    tmpRoot = tmp;
-
-                    tmpRoot = tmpRoot.Next;
-                } 
-            }
+                }
+            }          
         }
-
     }
 }

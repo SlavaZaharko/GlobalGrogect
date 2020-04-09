@@ -435,7 +435,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
             DoubleNode tmp = root;
             if (tmp.Value == a)
             {
-                AddFirst(a);
+                DelFromBegin();
             }
             else
             {
@@ -483,14 +483,24 @@ namespace GlobalProgect_1.DoubleLinkedLists
 
         public void RevMassive()// ревес массива
         {
-            DoubleNode tmpRoot = root;
-            DoubleNode tmpEnd = end;
-            while (tmpRoot != tmpEnd) 
+            if (root != null && end != null)
             {
-                tmpRoot = tmpEnd;
-                tmpEnd = tmpRoot;
+                DoubleNode tmp = root;
+                tmp.Previous = tmp.Next;
+                tmp.Next = null;
+                tmp = tmp.Previous;
 
-
+            while (root.Previous!=null)
+                {
+                    tmp.Previous = tmp.Next;
+                    tmp.Next = root;
+                    root = tmp;
+                    tmp = tmp.Previous;         
+                }
+                while (end.Next != null) 
+                {
+                    end = end.Next;
+                }
             }
         }
 
@@ -565,13 +575,122 @@ namespace GlobalProgect_1.DoubleLinkedLists
         }
 
         public void SortAscendElem()
-        {
-            
+        {         
+            DoubleNode newRoot = null;
+            DoubleNode newEnd = null;
+
+            for (int j=0; j<Length;j++)
+            {
+                DoubleNode tmp = root;
+                DoubleNode a = root;
+
+                while (tmp!=null)
+                {
+                    if (a.Value > tmp.Value)
+                    {
+                        a = tmp;
+                    }
+                    tmp = tmp.Next;
+                }
+
+                if (a!=root)
+                {
+                    DelFromBegin();
+                }
+                else if (a!=end)
+                {
+                    DelFromEnd();
+                }
+                else
+                {
+                    a.Previous.Next = a.Next;
+                    a.Next.Previous = a.Previous;
+                }
+               
+
+                a.Next = null;
+                a.Previous = null;
+
+                if (newRoot == null)
+                {
+                    newRoot = a;
+                    newEnd = newRoot;
+                }
+                else
+                {
+                    newEnd.Next = a;
+                    newEnd.Next.Previous = newEnd;
+                    newEnd = newEnd.Next;
+                }
+
+            }
+            root = newRoot;
+            end = newEnd;
         }
 
         public void AscendingDescending()
         {
-          
+
+            if (root != null && end != null)
+            {
+                if (root != null && root.Next == end)
+                {
+                    DoubleNode tmpRoot = root;
+                    DoubleNode tmpEnd = end;
+                    if (root.Value < end.Value)
+                    {
+                        tmpRoot.Next = null;
+                        tmpRoot.Previous = tmpEnd;
+                        tmpEnd.Previous = null;
+                        tmpEnd.Next = tmpRoot;
+                        root = tmpEnd;
+                        end = tmpRoot;
+
+                    }
+                    else 
+                    {
+                        root = tmpRoot;
+                        end = tmpEnd;
+                    }
+                }
+                else
+                {
+                    for (int i = Length - 1; i > 0; i--)
+                    {
+                        DoubleNode tmpRoot = root;
+                        DoubleNode tmp = root.Next;
+                        if (tmpRoot.Value < tmp.Value)
+                        {
+                            tmpRoot.Next = tmpRoot.Next.Next;
+                            tmp.Next = tmpRoot;
+                            tmpRoot.Previous = tmp;
+                            tmp.Previous = null;
+                            root = tmp;
+                        }
+                        else
+                        {
+                            while (tmp.Next!=null)
+                            {
+
+                                if (tmp.Value > tmp.Next.Value)
+                                {
+                                    DoubleNode q = tmp.Next;
+                                    DoubleNode b = tmp.Previous;
+                                    tmp.Next = tmp.Next.Next;
+                                    tmp.Previous.Next = q;
+                                    q.Previous = tmp.Previous;
+                                    q.Next = tmp;
+                                    tmp.Previous = q;
+                                }
+                                else
+                                {
+                                    tmp = tmp.Next;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
