@@ -480,42 +480,6 @@ namespace GlobalProgect_1.LinkedLists
             }
         }
 
-
-        //public void AscendingDescending()
-        //{
-        //    if (root != null && root.Next != null) 
-        //    {
-
-        //        for (int i = 0; i<Length-1; i++)
-        //        {
-        //            Node tmpRoot = root;
-        //            Node tmp = tmpRoot.Next;
-        //            if (tmpRoot.Value < tmpRoot.Next.Value)
-        //            {
-        //                tmpRoot.Next = tmpRoot.Next.Next;
-        //                tmp.Next = root;
-        //                root = tmp;
-        //            }
-        //            while (tmp.Next.Next != null)
-        //            {
-        //                Node prev = tmpRoot;
-        //                Node q = tmp.Next;
-        //                if (tmp.Value < tmp.Next.Value)
-        //                {
-        //                    tmp.Next = tmp.Next.Next;
-        //                    q.Next = tmp;
-        //                    prev.Next = q;
-        //                    tmp = tmp.Next;
-        //                }
-        //                else
-        //                {
-        //                    tmp = tmp.Next;
-        //                }
-        //            }
-        //        } 
-        //    }
-        //}
-
         public void AscendingDescending()
         {
 

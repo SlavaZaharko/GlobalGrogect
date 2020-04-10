@@ -664,23 +664,23 @@ namespace GlobalProgect_1.DoubleLinkedLists
                             tmpRoot.Next = tmpRoot.Next.Next;
                             tmp.Next = tmpRoot;
                             tmpRoot.Previous = tmp;
+                            tmpRoot.Next.Next.Previous = tmp;
                             tmp.Previous = null;
                             root = tmp;
                         }
                         else
                         {
-                            while (tmp.Next!=null)
-                            {
-
-                                if (tmp.Value > tmp.Next.Value)
+                            while (tmp.Next!=null )
+                            {   
+                                if (tmp.Value < tmp.Next.Value)
                                 {
                                     DoubleNode q = tmp.Next;
                                     DoubleNode b = tmp.Previous;
                                     tmp.Next = tmp.Next.Next;
-                                    tmp.Previous.Next = q;
-                                    q.Previous = tmp.Previous;
-                                    q.Next = tmp;
                                     tmp.Previous = q;
+                                    b.Next = q;
+                                    q.Next = tmp;
+                                    q.Previous = b;
                                 }
                                 else
                                 {
