@@ -28,7 +28,7 @@ namespace GlobalProgect_1
         public int SearchIndexMaxElem();//поиск индекса мах значения 
         public int SearchIndexMinElem();//поиск индекса минимального значения 
         public void SortAscendElem();//сортировка по возрастанию 
-        public void AscendingDescending();// сортировка по убыванию
+        public void SortDescending();// сортировка по убыванию
         public int ReturnLengthMassiva();//возврат длины массива
         public void DeleteByValue(int a);// удаление по значению
     }

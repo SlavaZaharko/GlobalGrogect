@@ -226,14 +226,14 @@ namespace ListTest
             return list.ReturnArray();
         }
 
-        [TestCase(new int[] { 2, 4, 12, 9, -1, 0 }, ExpectedResult = new int[] { 12, 9, 4, 2, 0, -1 })]
-        [TestCase(new int[] { 2, 14, -12, 9, -1, 6 }, ExpectedResult = new int[] { 14,9,6,2,-1,-12 })]
+        [TestCase(new int[] { 10, 12, 15, 18, 13 }, ExpectedResult = new int[] { 10, 12, 15, 18, 13 })]
+        [TestCase(new int[] { 14, -12, 9, -1, 6 }, ExpectedResult = new int[] { 14, 9, 6, -1,-12 })]
         [TestCase(new int[] { 4 ,2}, ExpectedResult = new int[] { 4, 2})]
         [TestCase(new int[] { 2,6 }, ExpectedResult = new int[] { 6,2 })]
-        public int[] AscendingDescendingTest(int[] array)
+        public int[] SortDescendingTest(int[] array)
         {
             list.Add(array);
-            list.AscendingDescending();
+            list.SortDescending();
             return list.ReturnArray();
         }
     }

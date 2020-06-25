@@ -325,7 +325,7 @@ namespace GlobalProgect_1
             }
         }
 
-        public void AscendingDescending()// сортировка по убыванию
+        public void SortDescending()// сортировка по убыванию
         {
             int max, temp;
             for (int i = 0; i <= length-1; i++)

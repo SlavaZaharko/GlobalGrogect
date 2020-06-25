@@ -480,7 +480,7 @@ namespace GlobalProgect_1.LinkedLists
             }
         }
 
-        public void AscendingDescending()
+        public void SortDescending()
         {
 
             if (root != null && root.Next != null)

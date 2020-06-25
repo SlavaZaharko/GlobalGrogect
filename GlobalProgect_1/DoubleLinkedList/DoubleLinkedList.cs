@@ -8,6 +8,9 @@ namespace GlobalProgect_1.DoubleLinkedLists
     {
         private DoubleNode root;
         private DoubleNode end;
+        private int length;
+        private int lenght;
+
         public int Length { get; set; }
 
         public DoubleLinkedList()
@@ -153,7 +156,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
                 if (a < Length / 2)
                 {
                     DoubleNode tmp = root;
-                    for (int i = 0; i < a-1; i++)
+                    for (int i = 0; i < a - 1; i++)
                     {
                         tmp = tmp.Next;
                     }
@@ -168,7 +171,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
                 else
                 {
                     DoubleNode tmp = end;
-                    for (int i = Length; i > a+1; i--)
+                    for (int i = Length; i > a + 1; i--)
                     {
                         tmp = tmp.Previous;
                     }
@@ -196,20 +199,20 @@ namespace GlobalProgect_1.DoubleLinkedLists
                     }
                     for (int j = 0; j < b.Length; j++)
                     {
-                    DoubleNode q = tmp.Next;
-                    q.Previous = tmp;
-                    tmp.Next = new DoubleNode(b[j]);
-                    tmp.Next.Previous = tmp;
-                    tmp = tmp.Next;
-                    tmp.Next = q;
-                    q.Previous = tmp;
+                        DoubleNode q = tmp.Next;
+                        q.Previous = tmp;
+                        tmp.Next = new DoubleNode(b[j]);
+                        tmp.Next.Previous = tmp;
+                        tmp = tmp.Next;
+                        tmp.Next = q;
+                        q.Previous = tmp;
                     }
-                    Length +=b.Length;
+                    Length += b.Length;
                 }
                 else
                 {
                     DoubleNode tmp = end;
-                    for (int i = Length; i > a+1 ; i--)
+                    for (int i = Length; i > a + 1; i--)
                     {
                         tmp = tmp.Previous;
                     }
@@ -263,7 +266,8 @@ namespace GlobalProgect_1.DoubleLinkedLists
 
         public void DelByIndex(int a) //удаление элемента по индексу
         {
-            if (root != null && end != null) { 
+            if (root != null && end != null)
+            {
                 if (a < Length / 2)
                 {
                     DoubleNode tmp = root;
@@ -278,10 +282,10 @@ namespace GlobalProgect_1.DoubleLinkedLists
                     tmp.Next = q;
                     Length--;
                 }
-                else 
+                else
                 {
                     DoubleNode tmp = end;
-                    for (int i = Length-1; i > a+1; i--)
+                    for (int i = Length - 1; i > a + 1; i--)
                     {
                         tmp = tmp.Previous;
                     }
@@ -312,7 +316,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
                 else
                 {
                     DoubleNode tmp = end;
-                    for (int i = Length-1; i > a; i--)
+                    for (int i = Length - 1; i > a; i--)
                     {
                         tmp = tmp.Previous;
                     }
@@ -352,7 +356,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
                     {
                         tmp = tmp.Next;
                     }
-                    tmp.Value=b;
+                    tmp.Value = b;
                 }
                 else
                 {
@@ -379,8 +383,8 @@ namespace GlobalProgect_1.DoubleLinkedLists
                 tmp = tmp.Next;
             }
             return max;
-        } 
-        
+        }
+
         public int SearchMinElem() // поиск минимального значения 
         {
             DoubleNode tmp = root;
@@ -395,7 +399,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
             }
             return min;
         }
-        
+
         public int SearchIndexMaxElem()//поиск индекса мах значения
         {
             int i_max = 0;
@@ -411,8 +415,8 @@ namespace GlobalProgect_1.DoubleLinkedLists
                 tmp = tmp.Next;
             }
             return i_max;
-        } 
-        
+        }
+
         public int SearchIndexMinElem()//поиск индекса минимального значения
         {
             int i_min = 0;
@@ -490,14 +494,14 @@ namespace GlobalProgect_1.DoubleLinkedLists
                 tmp.Next = null;
                 tmp = tmp.Previous;
 
-            while (root.Previous!=null)
+                while (root.Previous != null)
                 {
                     tmp.Previous = tmp.Next;
                     tmp.Next = root;
                     root = tmp;
-                    tmp = tmp.Previous;         
+                    tmp = tmp.Previous;
                 }
-                while (end.Next != null) 
+                while (end.Next != null)
                 {
                     end = end.Next;
                 }
@@ -520,7 +524,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
 
         public void DelFromBeginNElem(int n) // удаление из начала n-элементов
         {
-            if (Length > n) 
+            if (Length > n)
             {
                 for (int i = 0; i < n; i++)
                 {
@@ -574,123 +578,95 @@ namespace GlobalProgect_1.DoubleLinkedLists
             }
         }
 
-        public void SortAscendElem() { }
-        //{
-        //    DoubleNode newRoot = null;
-        //    DoubleNode newEnd = null;
+        public void SortAscendElem()
+        {
+            DoubleNode tmpListFirst = null;
+            DoubleNode tmpListLast = null;
 
-        //    for (int j = 0; j < Length; j++)
-        //    {
-        //        DoubleNode tmp = root;
-        //        DoubleNode a = root;
-
-        //        while (tmp != null)
-        //        {
-        //            if (a.Value > tmp.Value)
-        //            {
-        //                a = tmp;
-        //            }
-        //            tmp = tmp.Next;
-        //        }
-
-        //        if (a != root)
-        //        {
-        //            DelFromBegin();
-        //        }
-        //        else if (a != end)
-        //        {
-        //            DelFromEnd();
-        //        }
-        //        else
-        //        {
-        //            a.Previous.Next = a.Next;
-        //            a.Next.Previous = a.Previous;
-        //        }
+            for (int i = 0; i < Length; i++)
+            {
+                DoubleNode current = root;
+                DoubleNode min = root;
 
 
-        //        a.Next = null;
-        //        a.Previous = null;
+                while (current != null)
+                {
+                    if (current.Value < min.Value)
+                    {
+                        min = current;
+                    }
+                    current = current.Next;
+                }
+                if (root == end)
+                {
+                    root = null;
+                    end = null;
+                }
+                else if (min == root)
+                {
+                    root.Next.Previous = null;
+                    root = root.Next;
 
-        //        if (newRoot == null)
-        //        {
-        //            newRoot = a;
-        //            newEnd = newRoot;
-        //        }
-        //        else
-        //        {
-        //            newEnd.Next = a;
-        //            newEnd.Next.Previous = newEnd;
-        //            newEnd = newEnd.Next;
-        //        }
+                }
+                else if (min == end)
+                {
+                    end.Previous.Next = null;
+                    end = end.Previous;
+                }
+                else
+                {
+                    min.Previous.Next = min.Next;
+                    min.Next.Previous = min.Previous;
+                }
 
-        //    }
-        //    root = newRoot;
-        //    end = newEnd;
-        //}
+                if (tmpListFirst != null)
+                {
+                    tmpListLast.Next = min;
+                    min.Previous = tmpListLast;
+                    tmpListLast = tmpListLast.Next;
+                }
+                else
+                {
+                    tmpListFirst = min;
+                    tmpListLast = tmpListFirst;
+                }
+            }
+            root = tmpListFirst;
+            end = tmpListLast;
 
-        public void AscendingDescending() { }
-        //{
+        }
 
-        //    if (root != null && end != null)
-        //    {
-        //        if (root != null && root.Next == end)
-        //        {
-        //            DoubleNode tmpRoot = root;
-        //            DoubleNode tmpEnd = end;
-        //            if (root.Value < end.Value)
-        //            {
-        //                tmpRoot.Next = null;
-        //                tmpRoot.Previous = tmpEnd;
-        //                tmpEnd.Previous = null;
-        //                tmpEnd.Next = tmpRoot;
-        //                root = tmpEnd;
-        //                end = tmpRoot;
+        public void SortDescending()
+        {
+            if (lenght != 0)
+            {
 
-        //            }
-        //            else 
-        //            {
-        //                root = tmpRoot;
-        //                end = tmpEnd;
-        //            }
-        //        }
-        //        else
-        //        {
-        //            for (int i = Length - 1; i > 0; i--)
-        //            {
-        //                DoubleNode tmpRoot = root;
-        //                DoubleNode tmp = root.Next;
-        //                if (tmpRoot.Value < tmp.Value)
-        //                {
-        //                    tmpRoot.Next = tmpRoot.Next.Next;
-        //                    tmp.Next = tmpRoot;
-        //                    tmpRoot.Previous = tmp;
-        //                    tmpRoot.Next.Next.Previous = tmp;
-        //                    tmp.Previous = null;
-        //                    root = tmp;
-        //                }
-        //                else
-        //                {
-        //                    while (tmp.Next!=null )
-        //                    {   
-        //                        if (tmp.Value < tmp.Next.Value)
-        //                        {
-        //                            DoubleNode q = tmp.Next;
-        //                            DoubleNode b = tmp.Previous;
-        //                            tmp.Next = tmp.Next.Next;
-        //                            tmp.Previous = q;
-        //                            b.Next = q;
-        //                            q.Next = tmp;
-        //                            q.Previous = b;
-        //                        }
-        //                        else
-        //                        {
-        //                            tmp = tmp.Next;
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+                for (int i = 1; i < lenght; i++)
+                {
+                    DoubleNode tmp = root;
+                    if (root.Value < tmp.Next.Value)
+                    {
+                        tmp = tmp.Next;
+                        root.Next = tmp.Next;
+                        tmp.Next = root;
+                        root = tmp;
+                    }
+                    while (tmp.Next.Next != null)
+                    {
+                        DoubleNode left = tmp.Next;
+                        DoubleNode right = tmp.Next.Next;
+                        if (left.Value < right.Value)
+                        {
+                            left.Next = right.Next;
+                            right.Next = left;
+                            tmp.Next = right;
+                        }
+                        tmp = tmp.Next;
+                    }
+                }
+
+            }
+
+        }
     }
 }
