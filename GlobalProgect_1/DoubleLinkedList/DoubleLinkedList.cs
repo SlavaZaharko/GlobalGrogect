@@ -641,7 +641,7 @@ namespace GlobalProgect_1.DoubleLinkedLists
             if (lenght != 0)
             {
 
-                for (int i = 1; i < lenght; i++)
+                for (int i = 0; i < lenght-1; i++)
                 {
                     DoubleNode tmp = root;
                     if (root.Value < tmp.Next.Value)
@@ -660,13 +660,13 @@ namespace GlobalProgect_1.DoubleLinkedLists
                             left.Next = right.Next;
                             right.Next = left;
                             tmp.Next = right;
+                            left.Previous = right;
+                            right.Previous = tmp;
                         }
                         tmp = tmp.Next;
                     }
                 }
-
             }
-
         }
     }
 }
