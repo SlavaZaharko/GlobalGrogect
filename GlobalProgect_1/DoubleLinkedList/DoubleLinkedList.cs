@@ -638,35 +638,66 @@ namespace GlobalProgect_1.DoubleLinkedLists
 
         public void SortDescending()
         {
-            if (lenght != 0)
+            if (root != null && end != null)
             {
-
-                for (int i = 1; i < lenght; i++)
+                if (root != null && root.Next == end)
                 {
-                    DoubleNode tmp = root;
-                    if (root.Value < tmp.Next.Value)
+                    DoubleNode tmpRoot = root;
+                    DoubleNode tmpEnd = end;
+                    if (root.Value < end.Value)
                     {
-                        tmp = tmp.Next;
-                        root.Next = tmp.Next;
-                        tmp.Next = root;
-                        root = tmp;
+                        tmpRoot.Next = null;
+                        tmpRoot.Previous = tmpEnd;
+                        tmpEnd.Previous = null;
+                        tmpEnd.Next = tmpRoot;
+                        root = tmpEnd;
+                        end = tmpRoot;
+
                     }
-                    while (tmp.Next.Next != null)
+                    else
                     {
-                        DoubleNode left = tmp.Next;
-                        DoubleNode right = tmp.Next.Next;
-                        if (left.Value < right.Value)
-                        {
-                            left.Next = right.Next;
-                            right.Next = left;
-                            tmp.Next = right;
-                        }
-                        tmp = tmp.Next;
+                        root = tmpRoot;
+                        end = tmpEnd;
                     }
                 }
+                else
+                {
+                    for (int i = Length - 1; i > 0; i--)
+                    {
+                        DoubleNode tmpRoot = root;
+                        DoubleNode tmp = root.Next;
+                        if (tmpRoot.Value < tmp.Value)
+                        {
+                            tmpRoot.Next = tmpRoot.Next.Next;
+                            tmp.Next = tmpRoot;
+                            tmpRoot.Previous = tmp;
+                            tmp.Previous = null;
+                            root = tmp;
+                        }
+                        else
+                        {
+                            while (tmp.Next != null)
+                            {
 
+                                if (tmp.Value > tmp.Next.Value)
+                                {
+                                    DoubleNode q = tmp.Next;
+                                    DoubleNode b = tmp.Previous;
+                                    tmp.Next = tmp.Next.Next;
+                                    tmp.Previous.Next = q;
+                                    q.Previous = tmp.Previous;
+                                    q.Next = tmp;
+                                    tmp.Previous = q;
+                                }
+                                else
+                                {
+                                    tmp = tmp.Next;
+                                }
+                            }
+                        }
+                    }
+                }
             }
-
         }
     }
 }

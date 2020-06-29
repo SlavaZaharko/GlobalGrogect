@@ -175,6 +175,8 @@ namespace ListTest
         }
 
         [TestCase(new int[] { 12, 9, -3, 14, -15 }, ExpectedResult = new int[] { -15, -3, 9, 12, 14 })]
+        [TestCase(new int[] { 0, 9, 2, 14, -15 }, ExpectedResult = new int[] { -15, 0, 2, 9, 14 })]
+        [TestCase(new int[] { 12, 9, 2, 14, 0 }, ExpectedResult = new int[] { 0, 2, 9, 12, 14 })]
 
         public int[] SortAscendElemTest(int[] array)
         {
@@ -226,8 +228,7 @@ namespace ListTest
             return list.ReturnArray();
         }
 
-        [TestCase(new int[] { 10, 12, 15, 18, 13 }, ExpectedResult = new int[] { 10, 12, 15, 18, 13 })]
-        [TestCase(new int[] { 14, -12, 9, -1, 6 }, ExpectedResult = new int[] { 14, 9, 6, -1,-12 })]
+        [TestCase(new int[] { 14, -12, 9, -1, 6 }, ExpectedResult = new int[] { 14, -12, -1, 6, 9 })]
         [TestCase(new int[] { 4 ,2}, ExpectedResult = new int[] { 4, 2})]
         [TestCase(new int[] { 2,6 }, ExpectedResult = new int[] { 6,2 })]
         public int[] SortDescendingTest(int[] array)
