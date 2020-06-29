@@ -228,7 +228,7 @@ namespace ListTest
             return list.ReturnArray();
         }
 
-        [TestCase(new int[] { 14, -12, 9, -1, 6 }, ExpectedResult = new int[] { 14, -12, 9, -1,-12 })]
+        [TestCase(new int[] { 14, -12, 9, -1, 6 }, ExpectedResult = new int[] { 14, -12, -1, 6, 9 })]
         [TestCase(new int[] { 4 ,2}, ExpectedResult = new int[] { 4, 2})]
         [TestCase(new int[] { 2,6 }, ExpectedResult = new int[] { 6,2 })]
         public int[] SortDescendingTest(int[] array)
